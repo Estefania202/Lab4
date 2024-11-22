@@ -9,7 +9,9 @@
 *Asistente: Estefanía Pineda Ortega C06005*
 *Docente: Cristian Andres Aguilar-Barboza*
  
- ***Introducción***`#0969DA`
+ ***Introducción***
+ <span style="font-family: 'Courier New', monospace;">Texto en fuente monoespaciada</span>
+
   <summary>Clic</summary>
 
 Este es un bloque de codigo para ...
