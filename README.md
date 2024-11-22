@@ -12,16 +12,73 @@
 <span style="font-family: 'Times New Roman', serif; color: #01A6AB;">Introducción</span>
 
  
-Este es un bloque de codigo para ...
-
+Empezamos definiendo el espacio que vamos a enfocar nuestro interes, lo que hacemos es crear un poligo y nombrarlo "ROI" o subir una capa de la zona que queremos estudiar. En este caso es 
 <details>
   <summary>Clic</summary>
 	
 // Definir la región de interés (ROI)
 var roi = /* Inserta aquí tu región de interés */;
 Map.centerObject(roi, 10);
+</details>
+
+En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-1 
+
+<details>
+  <summary>Clic</summary>
+	
+// Cargar la colección Sentinel-1 y filtrar por parámetros específicos
+var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
+        .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
+        .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
+        .filterBounds(roi); // Región de interés
+</details>
+
+Filtrar imágenes de antes y del después del incendio 
+
+<details>
+  <summary>Clic</summary>
+	
+// Filtrar imágenes antes y después del incendio
+var beforeinc = s1.filterDate('2023-04-01', '2023-04-28');
+var afterinc = s1.filterDate('2023-05-10', '2023-06-01');
+</details>
+
+El mosaico ste es un bloque de codigo para ...
+
+<details>
+  <summary>Clic</summary>
+	
+// Crear imágenes únicas usando mosaico
+beforeinc = beforeinc.mosaic().clip(roi);
+afterinc = afterinc.mosaic().clip(roi);
+</details>
+
+Este es un bloque de codigo para ...
+
+<details>
+  <summary>Clic</summary>
+	
+// Cargar la colección Sentinel-1 y filtrar por parámetros específicos
+var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
+        .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
+        .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
+        .filterBounds(roi); // Región de interés
 
 </details>
+
+Este es un bloque de codigo para ...
+
+<details>
+  <summary>Clic</summary>
+	
+// Cargar la colección Sentinel-1 y filtrar por parámetros específicos
+var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
+        .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
+        .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
+        .filterBounds(roi); // Región de interés
+
+</details>
+
 * REFERENCIAS:*
 
 _Blasco, J., Fitrzyk, M., Patruno, J., Ruiz-Armenteros, A., & Marconcini, M. (2020). Effects on the Double Bounce Detection in Urban Areas Based on SAR Polarimetric Characteristics. Remote. Sens., 12, 1187. https://doi.org/10.3390/rs12071187._
