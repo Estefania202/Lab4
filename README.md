@@ -11,8 +11,7 @@
  
 <span style="font-family: 'Times New Roman', serif; color: #01A6AB;">Introducción</span>
 
-  <summary>Clic</summary>
-
+ 
 Este es un bloque de codigo para ...
 
 <details>
