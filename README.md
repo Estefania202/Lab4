@@ -9,7 +9,7 @@
 *Asistente: Estefanía Pineda Ortega C06005*
 *Docente: Cristian Andres Aguilar-Barboza*
  
- # *Introducción*
+ # ***Introducción***
   <summary>Clic</summary>
 
 Este es un bloque de codigo para ...
