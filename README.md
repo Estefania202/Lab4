@@ -9,8 +9,8 @@
 *Asistente: Estefanía Pineda Ortega C06005*
 *Docente: Cristian Andres Aguilar-Barboza*
  
- ***Introducción***
- <span style="font-family: 'Courier New', monospace;">Texto en fuente monoespaciada</span>
+
+ <span style="font-family: 'Roboto', monospace;">Introducción</span>
 
   <summary>Clic</summary>
 
