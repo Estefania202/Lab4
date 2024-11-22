@@ -25,7 +25,7 @@ var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
   
 
 </details>
-##REFERENCIAS:##
+##REFERENCIAS:
 
 _Blasco, J., Fitrzyk, M., Patruno, J., Ruiz-Armenteros, A., & Marconcini, M. (2020). Effects on the Double Bounce Detection in Urban Areas Based on SAR Polarimetric Characteristics. Remote. Sens., 12, 1187. https://doi.org/10.3390/rs12071187._
 _Chiang, C., Chen, K., Yang, Y., & Wang, S. (2022). Computation of Backscattered Fields in Polarimetric SAR Imaging Simulation of Complex Targets. IEEE Transactions on Geoscience and Remote Sensing, 60, 1-13. https://doi.org/10.1109/TGRS.2021.3139669_
