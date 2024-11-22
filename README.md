@@ -9,8 +9,14 @@
 *Asistente: Estefanía Pineda Ortega C06005*
 *Docente: Cristian Andres Aguilar-Barboza*
  
-<span style="font-family: 'Times New Roman', serif; color: #01A6AB;">Introducción</span>
+### INTRODUCCIÓN
 
+	Las Imágenes se Radar de Apertura Sintética (SAR en ingles=, se definen como una herramienta poderosa en teledetección. Hasselmann et tal (1985(, definen al SAR como, un Sistema que utiliza ondas de radio (radar) para simular una antena mas grande usando la superficie terrestre. Esto es ideal ya que no nececesita de buen clima y de que sea de día en el terreno a eyuddar. 
+	Para ello se requiere de la retrodispersión, el concepto mas importante en el estudio y trabajo con SAR. La retrodispersión en imágenes SAR se refiere a la reflexión de las ondas de radar de vuelta hacia la antena emisora. Este fenómeno es crucial para la formación de imágenes SAR y depende de varios factores, incluyendo la rugosidad de la superficie y las propiedades dieléctricas del material. (Hasselmann et tal. 1984) (Chang et tal. 2022). 
+	En la retrodispercion, hay dos modelos principales: la aproximación de Kirchho mejorada y la teoría geométrica de la dispersión. La aproximación de Kirchhoff Mejorada, es utilizada para estimar los campos de superficie inducidos por las ondas incidentes, esta técnica mejora la precisión de la simulación de datos SAR al considerar la difracciónde los bordes y las esquinas de los objetos (Chang et tal. 2022). Y la teoría Geométrica de la Difracción ,  se emplea para contabilizar los campos de difracción, esta teoría es esencial para modelar la retrodispersión en escenarios complejo (Chang et tal. 2022) 
+	Las imágenes SAR polarimétricas son ampliamente utilizadas para la detección y clasificación de áreas urbanas. La retrodispersión predominante en estos entornos es el doble rebote, aunque factores como la orientación de los edificios y la resolución de los datos SAR pueden afectar esta observación (Blasco et tal. 2020). El análisis de las imágenes SAR de la superficie marina permite una comprensión más completa de los fenómenos de retrodispersión en el océano. Los experimentos y modelos teóricos han mejorado la capacidad de interpretar las estadísticas de retrodispersión de una superficie marina en movimiento (Hasselmann et tal. 1984). La técnica de perfilado tomográfico (TP) permite obtener perfiles de retrodispersión verticales a través de volúmenes biogeofísicos, como nieve, hielo y vegetación. Esta técnica utiliza un esquema de procesamiento similar al SAR para producir imágenes con ángulos de incidencia constantes (Morrison & Bennett. 2014). Son los usos de SAR mas frecuentes que se citan en trabajos revisados. 
+
+### CODIGO
  
 Empezamos definiendo el espacio que vamos a enfocar nuestro interes, lo que hacemos es crear un poligo y nombrarlo "ROI" o subir una capa de la zona que queremos estudiar. En este caso es 
 
@@ -68,11 +74,10 @@ Este es un bloque de codigo para ...
   <summary>Clic</summary>
 
 ```js
-// Cargar la colección Sentinel-1 y filtrar por parámetros específicos
-var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
-        .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
-        .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
-        .filterBounds(roi); // Región de interés
+// Aplicar filtro de suavizado para reducir el speckle
+var SMOOTHING_RADIUS = 50; // Ajustar radio si es necesario
+beforeinc = beforeinc.focal_mean(SMOOTHING_RADIUS, 'circle', 'meters');
+afterinc = afterinc.focal_mean(SMOOTHING_RADIUS, 'circle', 'meters');
 ```
 </details>
 
@@ -82,15 +87,30 @@ Este es un bloque de codigo para ...
   <summary>Clic</summary>
 
 ```js	
-// Cargar la colección Sentinel-1 y filtrar por parámetros específicos
-var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
-        .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
-        .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
-        .filterBounds(roi); // Región de interés
+// Parámetros de visualización
+var visualization = {
+  bands: ['VH'], // Usar banda 'VV' si es necesario
+  min: -20,
+  max: -5
+};
 ```
 </details>
 
-* REFERENCIAS:*
+Este es un bloque de codigo para ...
+
+<details>
+  <summary>Clic</summary>
+
+```js	
+// Visualizar las imágenes antes y después del incendio
+Map.addLayer(beforeinc, visualization, 'Antes del incendio');
+Map
+```
+</details>
+
+### CONCLUSIÓN
+
+### *REFERENCIAS:*
 
 _Blasco, J., Fitrzyk, M., Patruno, J., Ruiz-Armenteros, A., & Marconcini, M. (2020). Effects on the Double Bounce Detection in Urban Areas Based on SAR Polarimetric Characteristics. Remote. Sens., 12, 1187. https://doi.org/10.3390/rs12071187._
 _Chiang, C., Chen, K., Yang, Y., & Wang, S. (2022). Computation of Backscattered Fields in Polarimetric SAR Imaging Simulation of Complex Targets. IEEE Transactions on Geoscience and Remote Sensing, 60, 1-13. https://doi.org/10.1109/TGRS.2021.3139669_
