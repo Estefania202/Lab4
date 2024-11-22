@@ -5,9 +5,9 @@
 
 ## Laboratorio 4: Imágenes SAR para inundaciones e incendios 
 
-###*Estudiante: Wagner Chacon Ulate C02093*
-###*Asistente: Estefanía Pineda Ortega C06005*
-###*Docente: Cristian Andres Aguilar-Barboza*
+*Estudiante: Wagner Chacon Ulate C02093*
+*Asistente: Estefanía Pineda Ortega C06005*
+*Docente: Cristian Andres Aguilar-Barboza*
 
 
 Este es un bloque de codigo para ...
