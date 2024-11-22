@@ -9,8 +9,7 @@
 *Asistente: Estefanía Pineda Ortega C06005*
 *Docente: Cristian Andres Aguilar-Barboza*
  
-
- <span style="font-family: 'Roboto', monospace;">Introducción</span>
+<span style="font-family: 'Times New Roman', serif; color: #01A6AB;">Introducción</span>
 
   <summary>Clic</summary>
 
