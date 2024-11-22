@@ -16,6 +16,7 @@ Empezamos definiendo el espacio que vamos a enfocar nuestro interes, lo que hace
 
 <details>
   <summary>Clic</summary>
+
 ```js	
 // Definir la región de interés (ROI)
 var roi = /* Inserta aquí tu región de interés */;
