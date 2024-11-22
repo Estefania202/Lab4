@@ -1,7 +1,7 @@
-#             Universidad de Costa Rica 
-#           Facultad de Ciencias Sociales 
-#                Escuela de Geografía 
-#         GF-0618 Fotogrametría y Teledetección  
+#Universidad de Costa Rica 
+#Facultad de Ciencias Sociales 
+#Escuela de Geografía 
+#GF-0618 Fotogrametría y Teledetección  
 
 ## Laboratorio 4: Imágenes SAR para inundaciones e incendios 
 
