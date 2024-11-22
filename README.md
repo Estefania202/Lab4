@@ -28,58 +28,66 @@ En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentin
 
 <details>
   <summary>Clic</summary>
-	
+
+```js		
 // Cargar la colección Sentinel-1 y filtrar por parámetros específicos
 var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
         .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
         .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
         .filterBounds(roi); // Región de interés
+```
 </details>
 
 Filtrar imágenes de antes y del después del incendio 
 
 <details>
   <summary>Clic</summary>
-	
+
+```js
 // Filtrar imágenes antes y después del incendio
 var beforeinc = s1.filterDate('2023-04-01', '2023-04-28');
 var afterinc = s1.filterDate('2023-05-10', '2023-06-01');
+```
 </details>
 
 El mosaico ste es un bloque de codigo para ...
 
 <details>
   <summary>Clic</summary>
-	
+
+```js	
 // Crear imágenes únicas usando mosaico
 beforeinc = beforeinc.mosaic().clip(roi);
 afterinc = afterinc.mosaic().clip(roi);
+```
 </details>
 
 Este es un bloque de codigo para ...
 
 <details>
   <summary>Clic</summary>
-	
+
+```js
 // Cargar la colección Sentinel-1 y filtrar por parámetros específicos
 var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
         .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
         .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
         .filterBounds(roi); // Región de interés
-
+```
 </details>
 
 Este es un bloque de codigo para ...
 
 <details>
   <summary>Clic</summary>
-	
+
+```js	
 // Cargar la colección Sentinel-1 y filtrar por parámetros específicos
 var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
         .filter(ee.Filter.eq('instrumentMode', 'IW')) // Modo Interferometric Wide
         .filter(ee.Filter.eq('orbitProperties_pass', 'DESCENDING')) // Órbita descendente
         .filterBounds(roi); // Región de interés
-
+```
 </details>
 
 * REFERENCIAS:*
