@@ -13,13 +13,14 @@
 
  
 Empezamos definiendo el espacio que vamos a enfocar nuestro interes, lo que hacemos es crear un poligo y nombrarlo "ROI" o subir una capa de la zona que queremos estudiar. En este caso es 
+
 <details>
   <summary>Clic</summary>
-'''js	
+```js	
 // Definir la región de interés (ROI)
 var roi = /* Inserta aquí tu región de interés */;
 Map.centerObject(roi, 10);
-'''
+```
 </details>
 
 En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-1 
