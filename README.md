@@ -106,6 +106,8 @@ Map
 ```
 </details>
 
+#### En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-2
+
 ### CONCLUSIÓN
 
 ### *REFERENCIAS:*
