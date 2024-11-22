@@ -30,7 +30,7 @@ Map.centerObject(roi, 10);
 ```
 </details>
 
-En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-1 
+## En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-1 
 
 <details>
   <summary>Clic</summary>
