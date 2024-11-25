@@ -43,7 +43,7 @@ var s1 = ee.ImageCollection('COPERNICUS/S1_GRD')
 ```
 </details>
 
-Filtrar imágenes de antes y del después del incendio 
+El Filtrar imágenes de antes y del después del incendio; propicia algunos puntos a cubrir con la metodología de comparación de fotos del antes y del después fomentaría una, evaluación de daños, un monitoreo con cambios más detallados de la vegetación y erosión. asi como ver contemplar métodos de recuperción. Como un buen diseño de reforestación, indentificar factores que fueron o serían un futuro factor de riesgo.
 
 <details>
   <summary>Clic</summary>
@@ -55,7 +55,7 @@ var afterinc = s1.filterDate('2023-05-10', '2023-06-01');
 ```
 </details>
 
-El mosaico de este es un bloque de codigo para ...
+El mosaico tiene como objetivo combinar múltiples imágenes superpuestas de una colección en una sola imagen única. Al obtener el mosaico se puede facilitar los análisis y poder hacer una facil comparación.   
 
 <details>
   <summary>Clic</summary>
