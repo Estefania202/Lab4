@@ -17,6 +17,11 @@
 	Las imágenes SAR polarimétricas son ampliamente utilizadas para la detección y clasificación de áreas urbanas. La retrodispersión predominante en estos entornos es el doble rebote, aunque factores como la orientación de los edificios y la resolución de los datos SAR pueden afectar esta observación (Blasco et tal. 2020). El análisis de las imágenes SAR de la superficie marina permite una comprensión más completa de los fenómenos de retrodispersión en el océano. Los experimentos y modelos teóricos han mejorado la capacidad de interpretar las estadísticas de retrodispersión de una superficie marina en movimiento (Hasselmann et tal. 1984). La técnica de perfilado tomográfico (TP) permite obtener perfiles de retrodispersión verticales a través de volúmenes biogeofísicos, como nieve, hielo y vegetación. Esta técnica utiliza un esquema de procesamiento similar al SAR para producir imágenes con ángulos de incidencia constantes (Morrison & Bennett. 2014). Son los usos de SAR mas frecuentes que se citan en trabajos revisados. 
 
 ### CODIGO
+
+#### Analisis de imagenes de inundación con Sentinel-1
+El codigo se encuentra en este link: https://code.earthengine.google.com/3aec8f0f18df775cf37bae0046297701
+
+![Esta imagen demuestra el resultado del Sentinel-1 antes de la inundación.]()
  
 #### En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-1 
 Empezamos definiendo el espacio que vamos a enfocar nuestro interes, lo que hacemos es crear un poligo y nombrarlo "ROI" o subir una capa de la zona que queremos estudiar. En este caso es 
@@ -108,6 +113,140 @@ Map
 </details>
 
 #### En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-2
+</details>
+
+Empezamos cargando la coleccion de imagenes de Sentinel2
+
+<details>
+  <summary>Clic</summary>
+
+```js	
+var s2 = ee.ImageCollection("COPERNICUS/S2_SR_HARMONIZED").filterBounds(roi) //s2 fue el nombre que le coloque a la coleccion que filtre.
+  .filterDate('2023-01-01', '2023-12-31') //Defina el rango de fechas.
+  .filterBounds(roi) // filtro de area.
+  .map(cloudMask) // aca ejecutamos el enmascador de nubes que programamos antes. 
+  print(s2) 
+```
+</details>
+
+</details>
+
+Luego empezamos a realizar filtros, que como mencionamos antes esto facilitara el analisis comparativo de los daños generados por el incendio. 
+
+<details>
+  <summary>Clic</summary>
+
+```js	
+// Filtros de la coleccion ANTES del incendio
+var antes = s2.filter(ee.Filter.or(
+ ee.Filter.date('2023-04-01', '2023-04-28')))
+print(antes, 'antes del incendio s2');
+
+// Filtros de la coleccion DESPUES del incendio
+var despues = s2.filter(ee.Filter.or(
+ ee.Filter.date('2023-05-10', '2023-06-01')))
+print( despues, 'despues del incendio s2');
+```
+</details>
+
+</details>
+
+En este proceso se generan imágenes limpias del antes y después del incendio y permite visualizarlas en el mapa. Depende del analisis se puede tomar como variable el mosaic, la mean o median
+
+<details>
+  <summary>Clic</summary>
+
+```js	
+var antes2 = antes.mosaic().clip(roi) //puedes cambiar mosaic por mean or median
+var despues2 =  despues.mosaic().clip(roi)
+print(antes, 'imagen antes del incendio')
+print(despues, 'imagen despues del incendio')
+
+Map.addLayer( antes2,{bands: ['B4', 'B3', 'B2'], min: 354.3920564417735, max: 1282.2158558183125, gamma: 1.2}, 'antes del incendio s2', 0);
+
+```
+</details>
+
+</details>
+Se espera que se calcule el indice de quemadura para imagenes del antes y despues del incendio, por medio de este podemos comprender el imacto que tuvo el incendio sobre la vegetación o el suelo
+<details>
+  <summary>Clic</summary>
+
+```js	
+var preNBR = antes2.normalizedDifference(['B8', 'B12']).rename('nbr');
+var postNBR = despues2.normalizedDifference(['B8', 'B12']).rename('nbr');
+print(preNBR)
+```
+</details>
+
+</details>
+
+</details>
+Aqui hay una vizualización del NBR de las imagenes.
+<details>
+  <summary>Clic</summary>
+
+```js	
+Map.addLayer(preNBR, 
+{bands: ['nbr'], min: 0.018902123252200934, max:0.7007203002942072 , gamma: 1.2}, 'nbr antes'); 
+//Visualizacion
+Map.addLayer(postNBR, 
+{bands: ['nbr'], min: 0.018902123252200934, max:0.7007203002942072 , gamma: 1.2}, 'nbr despues'); 
+```
+</details>
+
+</details>
+En este apartado se procura calcular la diferencia para ver variaciones de vegetacion del antes y del despues del incendio
+<details>
+  <summary>Clic</summary>
+
+```js	
+// The result is called delta NBR or dNBR
+var dNBR_unscaled = preNBR.subtract(postNBR);
+
+// Scale product to USGS standards
+var dNBR = dNBR_unscaled.multiply(1000);
+
+// Add the difference image to the console on the right
+print("Difference Normalized Burn Ratio: ", dNBR);
+```
+</details>
+
+</details>
+En este apartado esta enfocado en visualizar los mapas en gris
+<details>
+  <summary>Clic</summary>
+
+```js	
+var grey = ['white', 'black'];
+
+Map.addLayer(dNBR, {min: -1000, max: 1000, palette: grey}, 'dNBR greyscale');
+```
+</details>
+</details>
+A continuación se trata de calsificar lo más quemado a lo que no se quemo
+<details>
+  <summary>Clic</summary>
+
+```js	
+var sld_intervals =
+  '<RasterSymbolizer>' +
+    '<ColorMap type="intervals" extended="false" >' +
+      '<ColorMapEntry color="#ffffff" quantity="-500" label="-500"/>' +
+      '<ColorMapEntry color="#7a8737" quantity="-250" label="-250" />' +
+      '<ColorMapEntry color="#acbe4d" quantity="-100" label="-100" />' +
+      '<ColorMapEntry color="#0ae042" quantity="100" label="100" />' +
+      '<ColorMapEntry color="#fff70b" quantity="270" label="270" />' +
+      '<ColorMapEntry color="#ffaf38" quantity="440" label="440" />' +
+      '<ColorMapEntry color="#ff641b" quantity="660" label="660" />' +
+      '<ColorMapEntry color="#a41fd6" quantity="2000" label="2000" />' +
+    '</ColorMap>' +
+  '</RasterSymbolizer>';
+
+// Add the image to the map using both the color ramp and interval schemes.
+Map.addLayer(dNBR.sldStyle(sld_intervals), {}, 'dNBR classified');
+```
+</details>
 
 ### CONCLUSIÓN
 
