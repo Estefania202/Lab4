@@ -30,6 +30,7 @@ var roi = /* Inserta aquí tu región de interés */;
 Map.centerObject(roi, 10);
 ```
 </details>
+Vamos a cargar la colección de copernicus que corresponden a imágenes radar (SAR) estas cuentan con una buena calidad. La idea de aplicar filtros con el fin de reducir la cantidad de datos que no favorecen al objeto de estudio. Hay filtros por fechas, por zona a estudiar.  
 <details>
   <summary>Clic</summary>
 
@@ -54,7 +55,7 @@ var afterinc = s1.filterDate('2023-05-10', '2023-06-01');
 ```
 </details>
 
-El mosaico ste es un bloque de codigo para ...
+El mosaico de este es un bloque de codigo para ...
 
 <details>
   <summary>Clic</summary>
@@ -66,7 +67,7 @@ afterinc = afterinc.mosaic().clip(roi);
 ```
 </details>
 
-Este es un bloque de codigo para ...
+El specle, es un factor que dificultan el observar una imagen como se debe y este puede ser causado por muchos motivos. Es como tomarle una foto a un papel arrugado y que refleja de forma irregular la luz, así pasa con estas imágenes SAR. Aunque en Sar, estos ruidos oscurecen sectores muy finos y específicos de la imagen. P}Para corregir esto, están disponibles filtros como el de Lee, que calcula la varianza local y con ella calcula el valor de cada píxel. Otro es el filtro de Kuan, similar al de Le pero que pondera de otra manera los pixeles. Y el filtro de Frost, este usa la técnica estadística de máxima verosimilitud y así se adapta a la imagen.
 
 <details>
   <summary>Clic</summary>
