@@ -20,9 +20,8 @@
 
 #### Analisis de imagenes de inundación con Sentinel-1
 El codigo se encuentra en este link: https://code.earthengine.google.com/3aec8f0f18df775cf37bae0046297701
+La iamgenes se encuentran en el codigo adujto, se nota que en la zona más plana es donde hay una mayor afectación por inundación.
 
-![Esta imagen demuestra el resultado del Sentinel-1 antes de la inundación.]()
- 
 #### En siguiente codigo, se pocede a cargar las imagenes de la colencción de Sentinel-1 
 Empezamos definiendo el espacio que vamos a enfocar nuestro interes, lo que hacemos es crear un poligo y nombrarlo "ROI" o subir una capa de la zona que queremos estudiar. En este caso es 
 
@@ -249,6 +248,9 @@ Map.addLayer(dNBR.sldStyle(sld_intervals), {}, 'dNBR classified');
 </details>
 
 ### CONCLUSIÓN
+Mediante el uso de imágenes captadas por satélites, como las disponibles en Sentinel-2, se hace posible llevar a cabo un análisis de los efectos de eventos tales como los incendios forestales, siendo en este sentido de especial utilidad el uso del índice NBR (Normalised Burnt Ratio), así como la comparación de imágenes que se tomaron antes y después de que se produjera un incendio forestal. De esta forma se hace posible evaluar las superficies afectadas y la severidad de las mismas. Este tipo de metodología permite no solo aportar información útil no sólo para la respuesta inmediata y la planificación de la recuperación, sino también garantizar la previsión y la mitigación de riesgos a futuro, contemplando en su implementación la exigencia de poder sustentar la toma de decisiones, la cual debe ser llevada a cabo por la gestión del ambiente y la gestión de desastres.
+Por otro lado, la posibilidad de contar con las herramientas que ofrecen la teledetección esas imágenes de satélites, junto con sistemas de información geográfica (GIS), permite llevar a cabo un seguimiento de terrenos extensos de una forma sencilla y mucho más eficiente; se consigue de este modo una optimización de recursos y una gran reducción de tiempos de intervención. Las técnicas utilizadas en este sentido son en especial el mosaico, el NDVI (normalized difference vegetation index), el NBR (normalized burn ratio), así como la analítica de series temporales para generar mapas donde se pueden visualizar los impactos producidos por los incendios.
+En conclusión, el análisis de imágenes satelitales y la aplicación de diversas metodologías que se desprenden de la teledetección permiten optimizar las estrategias de gestión de desastres, restauración ecológica y prevención; ello hace que la gestión del medio afectado por un incendio pueda ser llevada a cabo de una forma más eficiente y sostenible del mismo. 
 
 ### *REFERENCIAS:*
 
